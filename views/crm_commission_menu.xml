@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="crm_commission_menu_root" name="CRM commission">
+            <menuitem id="crm_commission_menu" name="commission">
+                <menuitem id="crm_commission_menu_action" action="crm_commission_action"/>
+            </menuitem>
+        </menuitem>
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="crm_commission_action" model="ir.actions.act_window">
+            <field name="name">properties</field>
+            <field name="res_model">crm.commission</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="crm_commission_view_tree" model="ir.ui.view">
+            <field name="name">crm.commission</field>
+            <field name="model">crm.commission</field>
+            <field name="arch" type="xml">
+                <tree string="Commission tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="crm_commission_view_form" model="ir.ui.view">
+            <field name="name">crm.commission.form</field>
+            <field name="model">crm.commission</field>
+            <field name="arch" type="xml">
+                <form string="commission form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="active"/>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+                            </group>
+                            <group>
+                                <field name="commission_type"/>
+                                <field name="type" attrs="{'invisible':[('commission_type','!=','revenue wise')]}" />
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="COMMISSIONS">
+                                <field name="product_wise_ids" attrs="{'invisible':[('commission_type','!=','product wise')]}">
+                                    <tree string="Product wise" editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="product_id"/>
+                                        <field name="product_category_id"/>
+                                        <field name="rate_percentage"/>
+                                        <field name="Commission"/>
+                                    </tree>
+                                </field>
+                                <field name="revenue_wise_ids" attrs="{'invisible':[('commission_type','!=','revenue wise')]}">
+                                    <tree string="Revenue wise" editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="from_amount"/>
+                                        <field name="to_amount"/>
+                                        <field name="rate"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="seq_revenue_wise" model="ir.sequence">
+            <field name="name">Revenue Sequence</field>
+            <field name="code">revenue.wise</field>
+            <field name="prefix">PID</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>
